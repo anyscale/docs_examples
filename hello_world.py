@@ -5,5 +5,5 @@ import anyscale
 def say_hi(message):
     return f"Hello, {message}."
 
-ray.init("anyscale://hello_cluster")
+ray.init()
 print(ray.get(say_hi.remote("World")))
