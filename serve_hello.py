@@ -1,17 +1,19 @@
-import ray
+from fastapi import FastAPI
 from ray import serve
-
-ray.init()
 
 serve.start(detached=True)
 
-@serve.deployment
-def healthcheck():
-   return
+app = FastAPI()
 
-@serve.deployment
-def hello(request):
-   name = request.query_params["name"]
-   return f"Hello {name}!"
+@serve.deployment(route_prefix="/")
+@serve.ingress(app)
+class HelloWorld:
+    @app.get("/")
+    def hello(self):
+        return f"Hello world!"
+    
+    @app.get("/health")
+    def healthcheck(self):
+        return
 
-hello.deploy()
+HelloWorld.deploy()
