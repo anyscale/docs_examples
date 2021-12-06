@@ -12,7 +12,7 @@ class HelloWorld:
     def hello(self):
         return f"Hello world!"
     
-    @app.get("/health")
+    @app.get("/healthcheck")
     def healthcheck(self):
         return
 
