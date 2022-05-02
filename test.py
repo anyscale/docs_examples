@@ -1,6 +1,7 @@
 import numpy as np
 import wandb
 
+import ray
 from ray import tune
 from ray.tune import Trainable
 from ray.tune.integration.wandb import (
@@ -12,7 +13,7 @@ from ray.tune.integration.wandb import (
 def objective(config, checkpoint_dir=None):
     for i in range(30):
         loss = config["mean"]
-        tune.report(loss=loss)
+        tune.report(loss=loss, nodes=ray.nodes())
 
 def tune_function():
     """Example for using a WandbLoggerCallback with the function API"""
