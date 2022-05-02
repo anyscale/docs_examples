@@ -25,7 +25,7 @@ def tune_function():
             "mean": tune.grid_search([1, 2, 3, 4, 5]),
         },
         callbacks=[
-            WandbLoggerCallback(project="Wandb_example1")
+            WandbLoggerCallback()
         ],
     )
     return analysis.best_config
