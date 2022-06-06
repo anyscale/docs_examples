@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from ray import serve
 
+msg = os.getenv("MSG", "Hello world!")
+
 serve.start(detached=True)
 
 app = FastAPI()
@@ -10,7 +12,7 @@ app = FastAPI()
 class HelloWorld:
     @app.get("/")
     def hello(self):
-        return f"Hello world!"
+        return msg
     
     @app.get("/healthcheck")
     def healthcheck(self):
