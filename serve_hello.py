@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from ray import serve
+import os
 
 # Use this var to test service inplace update. When the env var is updated, users see new return value.
 msg = os.getenv("SERVE_RESPONSE_MESSAGE", "Hello world!")
