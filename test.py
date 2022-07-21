@@ -6,6 +6,11 @@ from ray import tune
 from ray.tune import Trainable
 from ray.air.callbacks.wandb import WandbLoggerCallback
 
+import os
+print("DEBUG environ", os.environ)
+import anyscale
+print("DEBUG setup_api", anyscale.experimental_integrations.wandb_setup_api_key_hook())
+
 def objective(config, checkpoint_dir=None):
     for i in range(30):
         loss = config["mean"]
