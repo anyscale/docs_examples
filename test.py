@@ -4,11 +4,7 @@ import wandb
 import ray
 from ray import tune
 from ray.tune import Trainable
-from ray.tune.integration.wandb import (
-    WandbLoggerCallback,
-    WandbTrainableMixin,
-    wandb_mixin,
-)
+from ray.air.callbacks.wandb import WandbLoggerCallback
 
 def objective(config, checkpoint_dir=None):
     for i in range(30):
