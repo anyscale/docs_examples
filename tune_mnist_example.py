@@ -13,6 +13,7 @@ import ray
 from ray import air, tune
 from ray.air import session
 from ray.tune.schedulers import AsyncHyperBandScheduler
+from ray.air.callbacks.wandb import WandbLoggerCallback
 
 # Change these values if you want the training to run quicker or slower.
 EPOCH_SIZE = 512
@@ -153,7 +154,7 @@ if __name__ == "__main__":
                 "mean_accuracy": 0.98,
                 "training_iteration": 5 if args.smoke_test else 100,
             },
-            callbacks=[air.callbacks.WandbLoggerCallback()]
+            callbacks=[WandbLoggerCallback()]
         ),
         param_space={
             "lr": tune.loguniform(1e-4, 1e-2),
