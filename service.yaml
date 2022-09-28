@@ -1,0 +1,6 @@
+entrypoint: python serve_hello.py
+runtime_env:
+  working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+healthcheck_url: "/healthcheck"
+
+
