@@ -93,6 +93,10 @@ def get_data_loaders():
 
 
 def train_mnist(config):
+    if config["momentum"] < 0.5:
+        print("Bug if momentum < 0.5 -- momentum: ", config["momentum"])
+        session.report({"mean_accuracy": -0.5*random.random()})
+        return
     use_cuda = torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
     train_loader, test_loader = get_data_loaders()
@@ -105,12 +109,8 @@ def train_mnist(config):
     while True:
         train(model, optimizer, train_loader, device)
         acc = test(model, test_loader, device)
-        if config["momentum"] < 0.5:
-            session.report({"mean_accuracy": -0.5*random.random()})
-            print("Bug if momentum < 0.5 -- momentum: ", config["momentum"])
-        else:
-            # Set this to run Tune.
-            session.report({"mean_accuracy": acc})
+        # Set this to run Tune.
+        session.report({"mean_accuracy": acc})
 
 
 if __name__ == "__main__":
@@ -144,9 +144,8 @@ if __name__ == "__main__":
     # for early stopping
     sched = AsyncHyperBandScheduler()
 
-    resources_per_trial = {"cpu": 2, "gpu": int(args.cuda)}  # set this for GPUs
     tuner = tune.Tuner(
-        tune.with_resources(train_mnist, resources=resources_per_trial),
+        train_mnist,
         tune_config=tune.TuneConfig(
             metric="mean_accuracy",
             mode="max",
