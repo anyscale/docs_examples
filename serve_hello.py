@@ -3,7 +3,7 @@ from ray import serve
 import os
 
 # Use this var to test service inplace update. When the env var is updated, users see new return value.
-msg = os.getenv("SERVE_RESPONSE_MESSAGE", "Hello world!")
+msg = os.getenv("SERVE_RESPONSE_MESSAGE", "Diff service!")
 
 serve.start(detached=True)
 
