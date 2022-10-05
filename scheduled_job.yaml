@@ -1,0 +1,8 @@
+name: schedule-demo
+description: Run every 10 minutes
+entrypoint: python hello_world.py
+runtime_env:
+  working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
+schedule:
+  cron_expression: "*/10 * * * *"
+  timezone: local
