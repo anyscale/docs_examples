@@ -39,8 +39,6 @@ tune.run(
             entity="aia-lion",
             project="Lion-2x2-9",
             group="Wandb test",
-            log_config=False,
-            resume=True,
         )
     ],
 )
