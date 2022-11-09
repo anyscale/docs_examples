@@ -36,9 +36,11 @@ tune.run(
     verbose=1,
     callbacks=[
         wandb_integration.WandbLoggerCallback(
-            entity="aia-lion",
+            #entity="aia-lion",
             project="Lion-2x2-9",
             group="Wandb test",
+            #log_config=False,
+            #resume=True,
         )
     ],
 )
