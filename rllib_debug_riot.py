@@ -7,7 +7,6 @@ from ray.rllib.policy import policy
 
 ray.init(
     ignore_reinit_error=True,
-    runtime_env={"working_dir": ".", "excludes": [".git", "wandb/"]},
 )
 
 config = {
@@ -28,6 +27,7 @@ config = {
     "evaluation_interval": 1,
     "evaluation_duration": "auto",
     "evaluation_parallel_to_training": True,
+    "log_level": "DEBUG",
 }
 
 tune.run(
