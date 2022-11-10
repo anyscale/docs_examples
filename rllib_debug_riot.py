@@ -27,7 +27,6 @@ config = {
     "evaluation_interval": 1,
     "evaluation_duration": "auto",
     "evaluation_parallel_to_training": True,
-    "log_level": "DEBUG",
 }
 
 tune.run(
@@ -36,11 +35,11 @@ tune.run(
     verbose=1,
     callbacks=[
         wandb_integration.WandbLoggerCallback(
-            #entity="aia-lion",
-            project="Lion-2x2-9",
+            entity="tmp123",
+            project="Lion-2x2-3",
             group="Wandb test",
-            #log_config=False,
-            #resume=True,
+            log_config=False,
+            resume=True,
         )
     ],
 )
