@@ -5,6 +5,13 @@ from ray.rllib.algorithms import appo
 from ray.rllib.examples.env.multi_agent import MultiAgentCartPole
 from ray.rllib.policy import policy
 
+import wandb
+import wandb.sdk.internal.meta
+import wandb.sdk.wandb_settings
+
+wandb.sdk.internal.meta.Meta._save_conda = lambda self: None
+wandb.sdk.wandb_settings.GitRepo.repo = property(lambda self: None)
+
 ray.init(
     ignore_reinit_error=True,
 )
