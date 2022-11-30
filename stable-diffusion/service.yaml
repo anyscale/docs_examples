@@ -1,0 +1,7 @@
+name: "diffusion-service"
+cluster_env: stable-diffusion-env
+runtime_env:
+  working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
+entrypoint: "cd stable-diffusion && serve run --non-blocking app:entrypoint"
+healthcheck_url: "/-/healthz"
+access: "public"
