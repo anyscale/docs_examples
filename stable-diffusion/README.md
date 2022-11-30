@@ -103,7 +103,7 @@ Let's navigate to the service page. You can find the link in the logs of the `an
 
 We will now test the service by invoking it through the web interface. You can also call the service programmatically (see the instruction from top right corner's Query button).
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/21118851/204908984-d349c214-dbf7-4719-9640-6206df30ca1f.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/21118851/204909023-9e3fac37-40c0-44e3-bfe0-4db502e30c2e.png">
 
 1. Wait for the service to be in a "Running" state.
 2. In the "Deployments" section, find the "APIIngress" row, click the "View" under "API Docs".
@@ -113,7 +113,7 @@ We will now test the service by invoking it through the web interface. You can a
 
 Because the diffusion model scales to zero, the first "cold start" invocation will be slow. Anyscale will bring up a GPU node and deploys the model there. You can observe the cold start process by going into the cluster page (in service page, under "Resource Usage", and under "Cluster").
 
-<img width="800" alt="image" src="https://user-images.githubusercontent.com/21118851/204909023-9e3fac37-40c0-44e3-bfe0-4db502e30c2e.png">
+<img width="800" alt="image" src="https://user-images.githubusercontent.com/21118851/204908984-d349c214-dbf7-4719-9640-6206df30ca1f.png">
 
 Once you are in the cluster page, you can observe the status via "Autoscaler status log". It typically takes 5 to 8 minutes for a GPU node to be ready. You can also click "Dashboard" in the cluster page to observe the current node and process status.
 
@@ -125,6 +125,8 @@ After the GPU node is up and model deployed, the execute call should go through 
 Here's what a successful run should look like:
 
 <img width="800" alt="image" src="https://user-images.githubusercontent.com/21118851/204908845-538875a5-9f67-487a-860d-26bc81257d9a.png">
+
+If the model is idle for some duration ([default is 5 minutes](https://docs.ray.io/en/latest/serve/scaling-and-resource-allocation.html#autoscaling)), the model will be shutdown along with the GPU node but the APIIngress will still be available.
 
 ## Known Issue
 If you are on GCP, the network times out after 15s, we are aware of this issue and working on a fix forward. You can workaround by:
