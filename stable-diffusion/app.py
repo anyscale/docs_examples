@@ -11,8 +11,8 @@ app = FastAPI()
 
 @serve.deployment(
     ray_actor_options={"num_gpus": 1},
-    num_replicas=1,
-    # autoscaling_config={"min_replicas": 0, "max_replicas": 2},
+    # num_replicas=1,
+    autoscaling_config={"min_replicas": 0, "max_replicas": 2},
     route_prefix="/",
 )
 @serve.ingress(app)
