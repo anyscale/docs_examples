@@ -6,4 +6,4 @@ This repo contains example workloads you can run on Anyscale. Please see the [An
 
 * [hello_world.py](/hello_world.py): A basic Hello World example
 * [serve_hello.py](/serve_hello.py): A basic Serve example
-* [serve_hello_private.py](/serve_hello_private.py): An private Serve example
+* [serve_hello_private.py](/serve_hello_private.py): A private Serve example
