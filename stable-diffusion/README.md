@@ -128,8 +128,5 @@ Here's what a successful run should look like:
 
 If the model is idle for some duration ([default is 5 minutes](https://docs.ray.io/en/latest/serve/scaling-and-resource-allocation.html#autoscaling)), the model will be shutdown along with the GPU node but the APIIngress will still be available.
 
-## Known Issue
-If you are on GCP, the network times out after 15s, we are aware of this issue and working on a fix forward. You can workaround by:
-- Retrying the requests once the node is up.
-- Lower the image size for faster inference.
-- Setup a custom load balancer in your infrastructure directly pointed to the Ray Cluster. (We can help you with this, please contact your Anyscale support team).
+## Next: Many Models Serving
+...
