@@ -24,8 +24,4 @@ entrypoint = HelloWorld.bind()
 
 # The following block will be executed if the script is run by Python directly
 if __name__ == "__main__":
-    import time
-
     serve.run(entrypoint)
-    while True:
-        time.sleep(1)
