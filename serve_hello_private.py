@@ -17,9 +17,9 @@ class HelloWorld:
     @app.get("/")
     def hello(self):
         return msg
-    
+
     @app.get("/healthcheck")
     def healthcheck(self):
         return
 
-HelloWorld.deploy()
+entrypoint = HelloWorld.bind()
