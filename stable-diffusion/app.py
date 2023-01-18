@@ -56,3 +56,5 @@ class StableDiffusionV2:
 
 entrypoint = APIIngress.bind(StableDiffusionV2.bind())
 
+# Run the script with `serve run app:entrypoint` to start the serve application
+
