@@ -13,7 +13,7 @@ class ModelLoader:
         self._path = d["model_path"]
         print(f"Loading model from path: {self._path}")
 
-    @f.get("/predict")
+    @f.get("/")
     def predict(self) -> str:
         return f"Response from model at {self._path}"
 
