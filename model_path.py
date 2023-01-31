@@ -4,7 +4,7 @@ from ray import serve
 
 from fastapi import FastAPI
 
-f = FastAPI()
+f = FastAPI(root_path="/serve")
 
 @serve.deployment(user_config={"model_path": "/mnt/shared_storage/model_v0"})
 @serve.ingress(f)
