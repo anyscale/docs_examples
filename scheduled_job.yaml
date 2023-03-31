@@ -1,4 +1,5 @@
 name: schedule-demo
+project_id: #your project_id
 description: Run every 10 minutes
 entrypoint: python hello_world.py
 runtime_env:
