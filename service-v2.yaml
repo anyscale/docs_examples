@@ -1,0 +1,9 @@
+name: service-hello
+cluster_env: default_cluster_env_2.4.0_py310:1
+ray_serve_config:
+  import_path: serve_hello:entrypoint
+  runtime_env:
+    working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+    env_vars:
+      SERVE_RESPONSE_MESSAGE: service v2 was rolled out
+
