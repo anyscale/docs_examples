@@ -7,9 +7,3 @@ ray_serve_config:
     env_vars:
       SERVE_RESPONSE_MESSAGE: service v2 was rolled out
 
-# You can optionally specify more fields
-# compute_config: todo_insert_compute_config_name 
-# project: todo_insert_my_project_name
-# version: todo_insert_version
-#
-
