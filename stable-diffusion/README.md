@@ -50,7 +50,7 @@ You can take a look at the [`cluster_env.yaml`](./cluster_env.yaml) to see which
 Once the environment is built, you can run the following command to deploy a running service on Anyscale.
 
 ```bash
-$ anyscale service deploy service.yaml
+$ anyscale service rollout -f service.yaml
 Authenticating
 Loaded Anyscale authentication token from ~/.anyscale/credentials.json.
 
@@ -79,20 +79,9 @@ runtime_env:
 This specifies the code repository to be used for our application. Anyscale also supports private repo and [local directory upload](https://docs.anyscale.com/user-guide/configure/dependency-management/runtime-env-jobs-services). We recommend use a git url for reproducibility.
 
 ```
-entrypoint: "cd stable-diffusion && serve run --non-blocking app:entrypoint"
+import_path: stable-diffusion.app:entrypoint
 ```
 This specifies how does Anyscale starts your service. We will use the `serve run` command to deploy the application in [`app.py`](./app.py). The application has two component: a FastAPI application validates and handle requests and a StableDiffusion deployment that auto-scale between 0 and 2 replicas.
-
-```
-healthcheck_url: "/-/healthz"
-```
-Anyscale services will actively health check your endpoint. You can specify a custom endpoint in your Ray Serve application, but here we just use the default one. If the service is done, Anyscale will restarts your cluster to attempt to make sure your application is healthy again.
-
-```
-access: "public"
-```
-Anyscale services are secured with different method of network authentication. By specifying `access: "public"`, your service is publicly available and guarded by an API token.
-
 
 ## Invoking the service
 Let's navigate to the service page. You can find the link in the logs of the `anyscale service deploy` command. Something like:
