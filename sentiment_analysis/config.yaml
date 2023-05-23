@@ -1,7 +1,6 @@
 name: "sentiment-service"
-cluster_env: default_cluster_env_ml_2.2.0_py37:1
-runtime_env:
-  working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
-entrypoint: "serve run --non-blocking sentiment_analysis.app:model"
-healthcheck_url: "/-/healthz"
-access: "public"
+cluster_env: default_cluster_env_ml_2.4.0_py310
+ray_serve_config:
+  import_path: "sentiment_analysis.app:model"
+  runtime_env:
+    working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
