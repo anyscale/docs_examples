@@ -79,7 +79,7 @@ runtime_env:
 This specifies the code repository to be used for our application. Anyscale also supports private repo and [local directory upload](https://docs.anyscale.com/user-guide/configure/dependency-management/runtime-env-jobs-services). We recommend use a git url for reproducibility.
 
 ```
-import_path: "stable-diffusion.app:entrypoint"
+import_path: stable-diffusion.app:entrypoint
 ```
 This specifies how does Anyscale starts your service. We will use the `serve run` command to deploy the application in [`app.py`](./app.py). The application has two component: a FastAPI application validates and handle requests and a StableDiffusion deployment that auto-scale between 0 and 2 replicas.
 
