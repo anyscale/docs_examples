@@ -1,6 +1,7 @@
-entrypoint: python serve_hello.py
-runtime_env:
-  working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
-healthcheck_url: "/healthcheck"
+name: hello-serve
+ray_serve_config:
+  import_path: serve_hello:entrypoint
+  runtime_env:
+    working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
 
 
