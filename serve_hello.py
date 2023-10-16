@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from ray import serve
+import os
 
-serve.start(detached=True)
+# Use this var to test service inplace update. When the env var is updated, users see new return value.
+msg = os.getenv("SERVE_RESPONSE_MESSAGE", "Hello world!")
 
 app = FastAPI()
 
@@ -10,10 +12,14 @@ app = FastAPI()
 class HelloWorld:
     @app.get("/")
     def hello(self):
-        return f"Hello world!"
-    
+        return msg
+
     @app.get("/healthcheck")
     def healthcheck(self):
         return
 
-HelloWorld.deploy()
+entrypoint = HelloWorld.bind()
+
+# The following block will be executed if the script is run by Python directly
+if __name__ == "__main__":
+    serve.run(entrypoint)

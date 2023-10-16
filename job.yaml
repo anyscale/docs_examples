@@ -1,0 +1,3 @@
+entrypoint: python hello_world.py
+runtime_env:
+  working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip

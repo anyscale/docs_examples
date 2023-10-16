@@ -1,9 +1,10 @@
 import ray
-import anyscale
+
 
 @ray.remote
-def say_hi(message):
-    return f"Hello, {message}."
+def hello_world():
+    return "Hello World!"
 
-ray.init()
-print(ray.get(say_hi.remote("World")))
+
+result = ray.get(hello_world.remote())
+print(result)
