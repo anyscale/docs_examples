@@ -9,3 +9,5 @@ def fn():
         print(f"Sleeping for 180 sec {i}")
         time.sleep(180)
         i += 1
+
+ray.get(fn.remote())
