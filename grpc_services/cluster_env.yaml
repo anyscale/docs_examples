@@ -1,0 +1,7 @@
+# This file is used to build the cluster environment for the gRPC service.
+#
+# Anyscale command:
+# anyscale cluster-env build cluster_env.yaml --name grpc-cluster-env
+
+docker_image: my-registry/my-image:tag  # <--- replace with your image
+ray_version: 2.7.0  # <--- replace if your image is based off different Ray version
