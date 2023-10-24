@@ -61,7 +61,7 @@ class GrpcDeployment:
             time.sleep(0.1)
 
 
-g = GrpcDeployment.options(name="grpc-deployment").bind()
+grpc_app = GrpcDeployment.options(name="grpc-deployment").bind()
 
 
 @serve.deployment
@@ -145,7 +145,7 @@ class DataPreprocessor:
 
 image_downloader = ImageDownloader.bind()
 data_preprocessor = DataPreprocessor.bind()
-g2 = ImageClassifier.options(name="grpc-image-classifier").bind(
+grpc_image_classifier = ImageClassifier.options(name="grpc-image-classifier").bind(
     image_downloader, data_preprocessor
 )
 
@@ -158,7 +158,7 @@ class HttpDeployment:
         return f"Hello {body} {time.time()}"
 
 
-h = HttpDeployment.options(name="http-deployment").bind()
+http_app1 = HttpDeployment.options(name="http-deployment").bind()
 
 
 @serve.deployment
@@ -169,7 +169,7 @@ class HttpDeployment2:
         return f"World {body} {time.time()}"
 
 
-h2 = HttpDeployment2.options(name="http-deployment").bind()
+http_app2 = HttpDeployment2.options(name="http-deployment").bind()
 
 
 app = FastAPI()
@@ -187,4 +187,4 @@ class MyFastAPIDeployment:
         return "hello2"
 
 
-app = MyFastAPIDeployment.bind()
+fastapi_app = MyFastAPIDeployment.bind()

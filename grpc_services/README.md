@@ -98,7 +98,7 @@ test_in = ImageData(
 )
 auth_token_metadata = ("authorization", f"bearer {token}")
 metadata = (
-    ("application", "app4"),
+    ("application", "grpc_image_classifier"),
     auth_token_metadata,
 )
 response, call = stub.Predict.with_call(request=test_in, metadata=metadata)

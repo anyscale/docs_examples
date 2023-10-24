@@ -51,7 +51,7 @@ test_in = UserDefinedMessage(
     origin="bar",
 )
 metadata = (
-    ("application", "app3"),
+    ("application", "grpc_app"),
     auth_token_metadata,
 )
 response, call = stub.__call__.with_call(request=test_in, metadata=metadata)
@@ -64,7 +64,7 @@ print("Output num field:", response.num)
 
 print("\n\n____________test calling Multiplexing ____________")
 request = UserDefinedMessage2()
-app_name = "app3"
+app_name = "grpc_app"
 request_id = "123"
 multiplexed_model_id = "999"
 metadata = (
@@ -87,7 +87,7 @@ test_in = UserDefinedMessage(
     origin="bar",
 )
 metadata = (
-    ("application", "app3"),
+    ("application", "grpc_app"),
     auth_token_metadata,
 )
 responses = stub.Streaming(test_in, metadata=metadata)
@@ -105,7 +105,7 @@ test_in = ImageData(
     url="https://github.com/pytorch/hub/raw/master/images/dog.jpg",
 )
 metadata = (
-    ("application", "app4"),
+    ("application", "grpc_image_classifier"),
     auth_token_metadata,
 )
 response, call = stub.Predict.with_call(request=test_in, metadata=metadata)
