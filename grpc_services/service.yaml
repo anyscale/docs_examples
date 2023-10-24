@@ -1,0 +1,41 @@
+# This file is used to build the gRPC service.
+#
+# Anyscale command:
+# anyscale service rollout -f service.yaml
+
+name: grpc-service
+cluster_env: grpc-cluster-env:1
+cloud: anyscale_v2_default_cloud
+config:
+  protocols:
+    grpc:
+      enabled: true  # Enable gRPC protocol.
+      service_names:
+        - userdefinedprotos.  # The name of the gRPC service in your .proto file.
+ray_serve_config:
+  grpc_options:
+    port: 9000
+    grpc_servicer_functions:
+      - user_defined_protos_pb2_grpc.add_UserDefinedServiceServicer_to_server
+      - user_defined_protos_pb2_grpc.add_ImageClassificationServiceServicer_to_server
+
+  applications:
+    - name: http_app
+      route_prefix: /http_app
+      import_path: deployment:http_app
+      runtime_env: { }
+
+    - name: grpc_app
+      route_prefix: /grpc_app
+      import_path: deployment:grpc_app
+      runtime_env: { }
+
+    - name: grpc_image_classifier
+      route_prefix: /grpc_image_classifier
+      import_path: deployment:grpc_image_classifier
+      runtime_env: { }
+
+    - name: http_fastapi_app
+      route_prefix: /http_fastapi_app
+      import_path: deployment:http_fastapi_app
+      runtime_env: { }
