@@ -158,18 +158,7 @@ class HttpDeployment:
         return f"Hello {body} {time.time()}"
 
 
-http_app1 = HttpDeployment.options(name="http-deployment").bind()
-
-
-@serve.deployment
-class HttpDeployment2:
-    async def __call__(self, request: Request) -> str:
-        body = await request.body()
-        print("request.body() in HttpDeployment2", body)
-        return f"World {body} {time.time()}"
-
-
-http_app2 = HttpDeployment2.options(name="http-deployment").bind()
+http_app = HttpDeployment.options(name="http-deployment").bind()
 
 
 app = FastAPI()
@@ -187,4 +176,4 @@ class MyFastAPIDeployment:
         return "hello2"
 
 
-fastapi_app = MyFastAPIDeployment.bind()
+http_fastapi_app = MyFastAPIDeployment.bind()

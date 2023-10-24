@@ -20,14 +20,9 @@ ray_serve_config:
       - user_defined_protos_pb2_grpc.add_ImageClassificationServiceServicer_to_server
 
   applications:
-    - name: http_app1
-      route_prefix: /http_app1
-      import_path: deployment:http_app1
-      runtime_env: { }
-
-    - name: http_app2
-      route_prefix: /http_app2
-      import_path: deployment:http_app2
+    - name: http_app
+      route_prefix: /http_app
+      import_path: deployment:http_app
       runtime_env: { }
 
     - name: grpc_app
@@ -40,7 +35,7 @@ ray_serve_config:
       import_path: deployment:grpc_image_classifier
       runtime_env: { }
 
-    - name: fastapi_app
-      route_prefix: /fastapi_app
-      import_path: deployment:fastapi_app
+    - name: http_fastapi_app
+      route_prefix: /http_fastapi_app
+      import_path: deployment:http_fastapi_app
       runtime_env: { }
