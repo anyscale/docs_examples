@@ -7,18 +7,20 @@ compute_config:
     name: head_node
     instance_type: m5.2xlarge
   worker_node_types:
-  - name: cpu_worker
-    instance_type: m5.4xlarge
-    min_workers: 0
-    max_workers: 10
-    use_spot: true
-  - name: gpu_worker
-    instance_type: g4dn.xlarge
-    min_workers: 0
-    max_workers: 2
-    use_spot: true
+    - name: cpu_worker
+      instance_type: m5.4xlarge
+      min_workers: 0
+      max_workers: 10
+      use_spot: true
+    - name: gpu_worker
+      instance_type: g4dn.xlarge
+      min_workers: 0
+      max_workers: 2
+      use_spot: true
 cluster_env: stable-diffusion-env
 ray_serve_config:
-  import_path: stable-diffusion.app:entrypoint
-  runtime_env:
-    working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
+  applications:
+    - name: stable_diffusion
+      import_path: stable-diffusion.app:entrypoint
+      runtime_env:
+        working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"

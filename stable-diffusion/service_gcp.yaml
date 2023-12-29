@@ -7,16 +7,18 @@ compute_config:
     name: head_node_type
     instance_type: n2-standard-8
   worker_node_types:
-  - name: cpu_worker
-    instance_type: n2-standard-16
-    min_workers: 0
-    max_workers: 10
-  - name: gpu_worker
-    instance_type: n1-standard-16-nvidia-tesla-t4-1
-    min_workers: 0
-    max_workers: 10
+    - name: cpu_worker
+      instance_type: n2-standard-16
+      min_workers: 0
+      max_workers: 10
+    - name: gpu_worker
+      instance_type: n1-standard-16-nvidia-tesla-t4-1
+      min_workers: 0
+      max_workers: 10
 cluster_env: stable-diffusion-env
 ray_serve_config:
-  import_path: stable-diffusion.app:entrypoint
-  runtime_env:
-    working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
+  applications:
+    - name: stable_diffusion
+      import_path: stable-diffusion.app:entrypoint
+      runtime_env:
+        working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"

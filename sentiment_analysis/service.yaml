@@ -1,0 +1,8 @@
+name: "sentiment-service"
+cluster_env: default_cluster_env_ml_2.9.0_py310
+ray_serve_config:
+  applications:
+    - name: sentiment_service
+      import_path: "sentiment_analysis.app:model"
+      runtime_env:
+        working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
