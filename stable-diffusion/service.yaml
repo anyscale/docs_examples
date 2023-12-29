@@ -1,7 +1,8 @@
 name: "diffusion-service"
 cluster_env: stable-diffusion-env
 ray_serve_config:
-  import_path: stable-diffusion.app:entrypoint
-  runtime_env:
-    working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
-
+  applications:
+    - name: stable_diffusion
+      import_path: stable-diffusion.app:entrypoint
+      runtime_env:
+        working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
