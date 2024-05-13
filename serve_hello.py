@@ -12,12 +12,12 @@ app = FastAPI()
 class HelloWorld:
     @app.get("/")
     def hello(self):
-    	print("DEBUG in /", msg)
+        print("DEBUG in /", msg)
         return msg
 
     @app.get("/healthcheck")
     def healthcheck(self):
-    	print("DEBUG in /healthcheck")
+        print("DEBUG in /healthcheck")
         return
 
 entrypoint = HelloWorld.bind()
