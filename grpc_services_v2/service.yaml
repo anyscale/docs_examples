@@ -1,0 +1,20 @@
+# This file is used to build the gRPC service.
+#
+# Anyscale command:
+# anyscale service deploy -f service.yaml
+
+name: grpc-service
+image_uri: my-registry/my-image:tag  # <--- replace with your image
+cloud: anyscale_v2_default_cloud  # <--- replace with your cloud name
+
+grpc_options:
+  service_names:
+    - userdefinedprotos.  # The name of the gRPC service in your .proto file.
+  grpc_servicer_functions:
+    - user_defined_protos_pb2_grpc.add_UserDefinedServiceServicer_to_server
+
+applications:
+  - name: grpc_app
+    route_prefix: /grpc_app
+    import_path: deployment:grpc_app
+    runtime_env: { }
