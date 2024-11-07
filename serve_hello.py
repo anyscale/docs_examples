@@ -7,7 +7,7 @@ msg = os.getenv("SERVE_RESPONSE_MESSAGE", "Hello world!")
 
 app = FastAPI()
 
-@serve.deployment(route_prefix="/")
+@serve.deployment
 @serve.ingress(app)
 class HelloWorld:
     @app.get("/")
