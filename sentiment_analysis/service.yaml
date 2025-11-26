@@ -1,8 +1,25 @@
-name: "sentiment-service"
-cluster_env: default_cluster_env_ml_2.9.0_py310
-ray_serve_config:
-  applications:
-    - name: sentiment_service
-      import_path: "sentiment_analysis.app:model"
-      runtime_env:
-        working_dir: "https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip"
+name: sentiment-service
+image_uri: anyscale/ray:2.52.0-slim-py312
+compute_config:
+  cloud: cld_xyz # TODO: fill in your cloud id
+  head_node:
+    instance_type: m5.2xlarge
+  worker_nodes:
+  - instance_type: m5.4xlarge
+    min_nodes: 0
+    max_nodes: 10
+    market_type: PREFER_SPOT
+  - instance_type: g4dn.4xlarge
+    min_nodes: 0
+    max_nodes: 10
+    market_type: PREFER_SPOT
+working_dir: https://github.com/anyscale/docs_examples/archive/refs/heads/main.zip
+requirements:
+  - fastapi==0.122.0
+  - torch==2.9.1
+  - transformers==4.57.3
+applications:
+- name: sentiment_service
+  import_path: sentiment_analysis.app:model
+
+# anyscale service deploy -f service.yaml
