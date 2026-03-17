@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@serve.deployment(route_prefix="/")
+@serve.deployment
 @serve.ingress(app)
 class LanguageModel:
     def __init__(self, task="sentiment-analysis"):
@@ -20,5 +20,5 @@ model = LanguageModel.bind()
 
 # The following block will be executed if the script is run by Python directly
 if __name__ == "__main__":
-    serve.run(model)
+    serve.run(model, route_prefix="/")
     
